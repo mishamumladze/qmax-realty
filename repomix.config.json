@@ -1,0 +1,55 @@
+{
+  "output": {
+    "filePath": "repomix-output.md",
+    "style": "markdown",
+    "headerText": "",
+    "fileSummary": false,
+    "directoryStructure": false,
+    "removeComments": true,
+    "removeEmptyLines": true,
+    "compress": false,
+    "topFilesLength": 0,
+    "showLineNumbers": false,
+    "copyToClipboard": true,
+    "includeFullDirectoryStructure": false,
+    "tokenCountTree": false
+  },
+  "include": [
+    "**/*.php",
+    "**/*.js",
+    "**/*.htaccess",
+    "!**/node_modules/**",
+    "!**/vendor/**",
+    "!**/*.sqlite",
+    "!**/*.sqlite-journal",
+    "!**/*.log",
+    "!**/lucide.min.js",
+    "!**/*.min.js",
+    "!**/*.css",
+    "!**/*.scss",
+    "!**/*.map",
+    "!**/*.png",
+    "!**/*.jpg",
+    "!**/*.jpeg",
+    "!**/*.webp",
+    "!**/*.ico",
+    "!**/*.svg"
+  ],
+  "ignore": {
+    "useGitignore": false,
+    "useDefaultPatterns": true,
+    "customPatterns": [
+      "booking/data/*.sqlite",
+      "booking/config/secrets.php",
+      "img/",
+      ".cline/",
+      "repomix-output.xml",
+      "settings.ini",
+      "package-lock.json",
+      "repomix.config.json",
+      "*.json",
+      "*.xml",
+      "*.md"
+    ]
+  }
+}

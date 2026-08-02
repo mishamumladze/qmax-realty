@@ -1,0 +1,18 @@
+{
+  "name": "qmax-realty",
+  "version": "1.0.0",
+  "private": true,
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.3.3",
+    "lucide": "^1.27.0",
+    "tailwindcss": "^4.3.3",
+    "swup": "^4.9.2"
+  },
+  "scripts": {
+    "css:build": "npx @tailwindcss/cli -i ./scss/main.scss -o ./scss/main.css --minify",
+    "css:watch": "npx @tailwindcss/cli -i ./scss/main.scss -o ./scss/main.css --watch",
+    "copy:lucide": "node -e \"const fs=require('fs'); fs.mkdirSync('js', { recursive: true }); fs.copyFileSync('node_modules/lucide/dist/umd/lucide.min.js', 'js/lucide.min.js');\"",
+    "copy:swup": "node -e \"const fs=require('fs'); fs.mkdirSync('js', { recursive: true }); fs.copyFileSync('node_modules/swup/dist/Swup.umd.js', 'js/swup.min.js');\"",
+    "build": "npm run css:build && npm run copy:lucide && npm run copy:swup"
+  }
+}

@@ -1,0 +1,217 @@
+/* ─── Tailwind v4 Import ─────────────────────────────────────────────── */
+@import "tailwindcss";
+
+/* ─── Global ────────────────────────────────────────────────────────────── */
+* {
+  font-family: "Inter", sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* ─── Language switcher ─────────────────────────────────────────────────── */
+.lang-switcher {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  a {
+    display: block;
+    line-height: 0;  /* removes phantom gap below inline img */
+
+    img {
+      width: 36px;
+      height: 36px;
+      object-fit: cover;
+      object-position: center;
+      border-radius: 50%;        /* slight rounding — looks cleaner than circle */
+      border: 1.5px solid transparent !important;
+      opacity: 0.75;
+      transition: opacity 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+
+      &:hover {
+        opacity: 1;
+        border-color: #059669 !important;  /* emerald-600 — matches site accent */
+        transform: scale(1.15);
+      }
+    }
+
+    /* Active / selected language flag — full opacity, emerald-900 border */
+    &.gtranslate_active img,
+    &[aria-current] img {
+      opacity: 1;
+      border-color: #064e3b !important;
+    }
+  }
+}
+
+/* ─── Accordion tab active state ────────────────────────────────────────── */
+.tab-btn.active {
+  background-color: white;
+  color: #059669;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+}
+
+/* ─── "Learn More" arrow button ─────────────────────────────────────────── */
+.learn-more-btn {
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+
+  &:hover .learn-more-arrow {
+    transform: translateX(4px);
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
+
+  .learn-more-arrow {
+    transition: all 0.3s ease;
+  }
+}
+
+/* ─── Social cards (socials.php) ────────────────────────────────────────── */
+.social-card {
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: translateY(-8px);
+
+    .social-icon {
+      transform: scale(1.1);
+    }
+  }
+
+  .social-icon {
+    transition: all 0.3s ease;
+  }
+}
+
+.feature-icon {
+  transition: all 0.3s ease;
+}
+
+.price-tag {
+  background: linear-gradient(135deg, #059669, #34d399);
+}
+
+/* ─── Tour detail page ──────────────────────────────────────────────────── */
+.sticky-card {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 2rem;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 50;
+  inset: 0;
+  overflow: hidden;
+  background-color: rgba(0, 0, 0, 0.85);
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
+  justify-content: center;
+  align-items: center;
+
+  .modal-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+  }
+
+  .modal-content {
+    display: block;
+    width: auto;
+    height: auto;
+    max-width: 90vw;
+    max-height: 90vh;
+    border-radius: 0.5rem;
+  }
+
+  .modal-close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+    cursor: pointer;
+    z-index: 60;
+  }
+
+  .carousel-btn {
+    padding: 1rem;
+  }
+}
+
+.gallery-img {
+  cursor: pointer;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.hidden-until-loaded {
+  display: none;
+}
+
+#itinerary-list ul {
+  list-style-type: disc;
+  padding-left: 20px;
+  margin-top: 8px;
+}
+
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  padding: 0.5rem;
+  cursor: pointer;
+  border-radius: 9999px;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease;
+
+  @media (min-width: 768px) {
+    padding: 0.75rem;
+  }
+
+  &:hover { background-color: rgba(0, 0, 0, 0.8); }
+
+  &.prev {
+    left: 0.5rem;
+    @media (min-width: 768px) { left: 1rem; }
+  }
+
+  &.next {
+    right: 0.5rem;
+    @media (min-width: 768px) { right: 1rem; }
+  }
+}
+
+.tawk-min-container{
+  margin-bottom: 64px;
+}
+
+.sidebar-link { @apply flex items-center gap-3 px-4 py-2.5 rounded-lg text-gray-300 hover:bg-white/10 hover:text-white transition-all duration-200 text-sm font-medium; }
+.sidebar-link.active { @apply bg-emerald-600 text-white; }
+
+.filter-tab { background: #ffffff; border-color: #e5e7eb; color: #6b7280; }
+.filter-tab:hover { background: #ecfdf5; border-color: #a7f3d0; color: #047857; }
+.filter-tab.active,
+.filter-tab[aria-selected="true"] { background: #047857; border-color: #047857; color: #ffffff; }
+.filter-tab.active .count-badge,
+.filter-tab[aria-selected="true"] .count-badge { background: rgba(255, 255, 255, 0.25); color: #ffffff; }
+.property-card.hidden { display: none; }
+.scrollbar-hide::-webkit-scrollbar { display: none; }
+.scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }

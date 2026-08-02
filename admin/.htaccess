@@ -1,0 +1,42 @@
+Options -Indexes
+
+# ──────────────────────────────────────────────────────────────────────────────
+# 1. SECURITY HEADERS
+# ──────────────────────────────────────────────────────────────────────────────
+<IfModule mod_headers.c>
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set X-Frame-Options "SAMEORIGIN"
+    Header always set X-XSS-Protection "1; mode=block"
+    Header always set X-Robots-Tag "noindex, nofollow"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    Header always set Permissions-Policy "geolocation=(), microphone=(), camera=()"
+</IfModule>
+
+# ──────────────────────────────────────────────────────────────────────────────
+# 3. URL REWRITES
+# ──────────────────────────────────────────────────────────────────────────────
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /admin/
+
+    # Block config and includes directories
+    RewriteRule ^(config|includes)/.* - [F,L]
+
+    # ─── Top-level Pages ──────────────────────────────────────────────────
+    # /listings, /socials, /contact, /about, /index
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^(index|bookings|new-booking|promoters|prices|newsletter|exchange|contacts)/?$ $1.php [L,QSA]
+</IfModule>
+
+# ──────────────────────────────────────────────────────────────────────────────
+# 4. CACHING
+# ──────────────────────────────────────────────────────────────────────────────
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType image/webp          "access plus 1 year"
+    ExpiresByType image/jpeg          "access plus 1 year"
+    ExpiresByType image/png           "access plus 1 year"
+    ExpiresByType image/svg+xml       "access plus 1 year"
+    ExpiresByType text/css            "access plus 1 month"
+    ExpiresByType application/javascript "access plus 1 month"
+</IfModule>

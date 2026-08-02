@@ -1,0 +1,16 @@
+# ─── Node / npm ───────────────────────────────────────────────────────────────
+node_modules/
+# ─── Logs & Temp ──────────────────────────────────────────────────────────────
+*.log
+/tmp/
+# ─── Tooling (not part of the site) ───────────────────────────────────────────
+.cline/
+.omo/
+
+# ─── Others ───────────────────────────────────────────────────────────────────
+settings.ini
+repomix-output.xml
+booking/data/*.sqlite
+booking/config/secrets.php
+
+# img/ is intentionally tracked (images should be uploaded)
