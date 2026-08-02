@@ -6,6 +6,7 @@ node_modules/
 # ─── Tooling (not part of the site) ───────────────────────────────────────────
 .cline/
 .omo/
+.vscode/
 
 # ─── Others ───────────────────────────────────────────────────────────────────
 settings.ini
