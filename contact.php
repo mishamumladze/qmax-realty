@@ -10,7 +10,6 @@ if (empty($_SESSION['csrf_token'])) {
 
 require_once __DIR__ . '/includes/layout.php';
 
-$current_page = 'contact';
 qmx_head(
     'Contact QMAX Realty — Get in Touch',
     'Contact QMAX Realty for expert guidance on buying, selling, or renting property in Georgia.'
@@ -114,7 +113,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <?php require_once __DIR__ . '/includes/navbar.php'; ?>
 
-<main class="min-h-screen container mx-auto px-4 md:py-18 py-0">
+<main id="swup" class="transition-fade min-h-screen container mx-auto px-4 md:py-18 py-0">
 
     <!-- Hero -->
     <section class="relative bg-gradient-to-r from-emerald-600 to-emerald-700 text-white py-16 md:py-24 rounded-2xl mb-12">

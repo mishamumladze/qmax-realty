@@ -106,7 +106,7 @@
 
 <?php require_once __DIR__ . '/includes/navbar.php'; ?>
 
-<main class="min-h-screen container mx-auto px-4 md:py-18 py-0">
+<main id="swup" class="transition-fade min-h-screen container mx-auto px-4 md:py-18 py-0">
 
     <!-- Page Header -->
     <header class="text-center py-14 md:py-20">
@@ -118,7 +118,7 @@
 
     <!-- Social Cards Grid -->
     <div class="max-w-6xl mx-auto">
-        <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             <?php foreach ($socials as $s): ?>
             <div class="social-card bg-gradient-to-br <?= htmlspecialchars($s['gradient'], ENT_QUOTES, 'UTF-8') ?> rounded-2xl p-6 md:p-8 text-white shadow-lg hover:shadow-2xl">
 

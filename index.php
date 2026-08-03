@@ -4,7 +4,6 @@
     $_SESSION['csrf_token'] = bin2hex(random_bytes(16));
     require_once __DIR__ . '/includes/layout.php';
 
-    $current_page = 'home';
     qmx_head(
         'QMAX Real Estate — Find Your Dream Property!',
         'Discover premium real estate in Georgia. Buy, sell, or rent properties in Tbilisi, Batumi, and beyond. Expert guidance, transparent transactions, and prime locations.',
@@ -14,7 +13,7 @@
     // Featured Properties
     $featured_slugs = ['sololaki-luxury-penthouse', 'vera-garden-apartment', 'saburtalo-family-house', 'vake-city-view-apartment', 'old-town-charming-studio', 'tbilisi-sea-luxury-villa'];
 ?>
-<main class="min-h-screen container mx-auto px-4 md:py-18 py-0">
+<main id="swup" class="transition-fade min-h-screen container mx-auto px-4 md:py-18 py-0">
 
 <!-- Hero -->
 <section class="relative w-full h-[68vh]" aria-label="Featured properties slideshow">
@@ -23,8 +22,8 @@
              class="w-full h-full object-cover object-[50%_35%] rounded-lg" loading="eager">
         <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent flex flex-col md:py-24 py-16 text-center rounded-lg">
             <div class="w-4/5 mx-auto text-white mb-6 h-full justify-end h-full">
-                <h1 class="text-3xl md:text-5xl font-bold mb-2">Find Your Dream Property!</h1>
-                <p class="text-base md:text-lg max-w-2xl mx-auto mb-6">Discover premium real estate with expert guidance and unmatched service</p>
+                <h1 data-sal="slide-up" data-sal-duration="700" class="text-3xl md:text-5xl font-bold mb-2">Find Your Dream Property!</h1>
+                <p data-sal="slide-up" data-sal-duration="700" data-sal-delay="150" class="text-base md:text-lg max-w-2xl mx-auto mb-6">Discover premium real estate with expert guidance and unmatched service</p>
             </div>
             <div class="">
                 <!-- Each button links to properties.php with the right ?filter= so the tab is pre-selected -->
@@ -51,7 +50,7 @@
 <!-- Most Viewed Properties This Week — Carousel -->
 <section class="container mx-auto px-4 py-8 md:py-12" aria-labelledby="most-viewed-heading">
     <div class="text-center mb-8 md:mb-12">
-        <h2 id="most-viewed-heading" class="text-2xl md:text-3xl lg:text-4xl font-bold text-emerald-600 mb-4">
+        <h2 id="most-viewed-heading" data-sal="slide-up" class="text-2xl md:text-3xl lg:text-4xl font-bold text-emerald-600 mb-4">
             Most Viewed Properties This Week
         </h2>
         <p class="text-base md:text-lg text-gray-600 max-w-2xl mx-auto">
@@ -223,7 +222,7 @@
 <!-- Why Choose Us -->
 <section class="container mx-auto px-4 py-12 md:py-16 bg-gray-50 rounded-2xl my-8" aria-labelledby="why-us-heading">
     <div class="text-center mb-12">
-        <h2 id="why-us-heading" class="text-3xl md:text-4xl font-bold text-gray-800 mb-12">Why Choose QMAX Realty?</h2>
+        <h2 id="why-us-heading" data-sal="slide-up" class="text-3xl md:text-4xl font-bold text-gray-800 mb-12">Why Choose QMAX Realty?</h2>
         <!-- Stats row -->
         <div class="grid grid-cols-3 gap-6 max-w-3xl mx-auto">
             <div class="text-center">
@@ -248,8 +247,10 @@
             ['icon' => 'handshake',     'title' => 'Personalized Approach', 'desc' => 'Tailored solutions and one-on-one guidance for your unique real estate needs.'],
             ['icon' => 'shield-check',  'title' => 'Trusted & Transparent', 'desc' => 'Clear communication, ethical practices, and full support throughout your transaction.'],
         ];
+        $why_delay = 0;
         foreach ($why_us as $item): ?>
-        <div class="text-center">
+        <div class="text-center" data-sal="fade" data-sal-delay="<?= $why_delay ?>">
+            <?php $why_delay += 100; ?>
             <div class="w-16 h-16 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-4">
                 <i data-lucide="<?= htmlspecialchars($item['icon'], ENT_QUOTES, 'UTF-8') ?>" class="w-8 h-8 text-emerald-600" aria-hidden="true"></i>
             </div>

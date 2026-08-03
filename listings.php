@@ -4,7 +4,6 @@
     $_SESSION['csrf_token'] = bin2hex(random_bytes(16));
     require_once __DIR__ . '/includes/layout.php';
 
-    $current_page = 'listings';
     qmx_head(
         'Properties for Sale & Rent in Georgia — QMAX Realty',
         'Browse all properties for sale and rent in Georgia. Apartments, houses, commercial real estate and more.'
@@ -40,7 +39,7 @@
         : 'all';
 ?>
 
-<main class="min-h-screen container mx-auto px-4 md:py-18 py-0">
+<main id="swup" class="transition-fade min-h-screen container mx-auto px-4 md:py-18 py-0">
 
     <!-- Hero Banner -->
     <header class="relative bg-gradient-to-r from-emerald-600 to-emerald-700 text-white py-14 md:py-20">
@@ -67,7 +66,7 @@
     </header>
 
     <!-- Filter & Sort Bar -->
-    <div class="sticky top-0 md:top-16 z-30 bg-white border-b border-gray-200 shadow-sm">
+    <div class="sticky top-0 md:top-16 bg-white border-b border-gray-200 shadow-sm">
         <div class="container mx-auto px-4">
             <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 py-3">
 
@@ -285,6 +284,8 @@
                 ?>
                 <article
                     class="property-card bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 flex flex-col"
+                    data-sal="fade"
+                    data-sal-delay="<?= min($order_index * 100, 500) ?>"
                     data-type="<?= $type ?>"
                     data-purpose="<?= $offer ?>"
                     data-country="<?= $country ?>"

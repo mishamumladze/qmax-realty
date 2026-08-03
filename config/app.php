@@ -56,7 +56,7 @@ if (!defined('SITE_URL')) {
 // ── Contact details — single source of truth ─────────────────────────────────
 // Update here and every page/email reflects the change automatically.
 if (!defined('CONTACT_EMAIL')) {
-    define('CONTACT_EMAIL',     'realty@qmax.biz');
+    define('CONTACT_EMAIL',     'qmax.rea@gmail.com');
     define('CONTACT_PHONE_ENG', '+995595505402');
     define('CONTACT_PHONE_RUS', '+995595906560');
     define('CONTACT_WA_ENG',    'https://wa.me/995595505402');

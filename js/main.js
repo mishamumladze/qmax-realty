@@ -231,7 +231,7 @@ function initScrollToTop() {
     });
 }
 
-(function () {
+function initListingsFilters() {
     const grid      = document.getElementById('properties-grid');
     if (!grid) return;
     const cards     = Array.from(grid.querySelectorAll('.property-card'));
@@ -538,18 +538,261 @@ function initScrollToTop() {
     }
 
     refresh();
-})();
+}
+
+// -------------------------------------------------------------------------
+// Scroll reveal (SAL)
+// -------------------------------------------------------------------------
+function initScrollReveal() {
+    // Guard against a stale/corrupt sal build (e.g. the broken {default: fn}
+    // export we shipped once) — a throw here would kill Swup's transition.
+    if (typeof sal !== 'function') return;
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const elements = document.querySelectorAll('[data-sal]');
+    if (!elements.length) return;
+    if (typeof window.__salInstance !== 'undefined') {
+        window.__salInstance.update();   // re-observe after swup swaps the DOM
+        return;
+    }
+    window.__salInstance = sal({
+        once: true,
+        threshold: 0.15,
+        rootMargin: '0px 0px -10% 0px',
+    });
+}
+
+// -------------------------------------------------------------------------
+// Property gallery — carousel + thumbnails + lightbox (property detail page)
+// -------------------------------------------------------------------------
+function initPropertyGallery() {
+    const mainImg = document.getElementById('gallery-main');
+    if (!mainImg) return;
+
+    const thumbs = Array.from(document.querySelectorAll('[data-gallery-thumb]'));
+    const prevBtn = document.getElementById('gallery-prev');
+    const nextBtn = document.getElementById('gallery-next');
+    const counter = document.getElementById('gallery-counter');
+    const lightbox = document.getElementById('gallery-lightbox');
+    const lbImg = document.getElementById('lightbox-img');
+    const lbPrev = document.getElementById('lightbox-prev');
+    const lbNext = document.getElementById('lightbox-next');
+    const lbClose = document.getElementById('lightbox-close');
+    const lbCounter = document.getElementById('lightbox-counter');
+    const lbThumbs = document.getElementById('lightbox-thumbs');
+    const outImg = document.getElementById('gallery-out');
+    const lbOut = document.getElementById('lightbox-out');
+
+    // Sources: every thumb image plus the main image (deduped, order preserved)
+    const srcs = [];
+    thumbs.forEach(t => {
+        const s = t.querySelector('img');
+        if (s && s.getAttribute('src')) srcs.push(s.getAttribute('src'));
+    });
+    if (mainImg.getAttribute('src') && !srcs.includes(mainImg.getAttribute('src'))) srcs.unshift(mainImg.getAttribute('src'));
+    const total = srcs.length;
+    if (total < 2) return; // nothing to navigate — single image
+
+    let current = 0;
+    let closeTimer = null;
+    const activeClass = 'border-emerald-600';
+    const idleClasses = ['border-transparent', 'hover:border-emerald-300'];
+    const lbIdleClasses = ['border-white/30', 'hover:border-white/60'];
+    const slideInClasses = ['gallery-img-swap', 'gallery-img-swap-left'];
+    const slideOutClasses = ['gallery-slide-out-left', 'gallery-slide-out-right'];
+    const animTimers = new Map();
+
+    function replayAnim(el, cls, siblings) {
+        if (!el) return;
+        el.classList.remove(cls, ...(siblings || []));
+        void el.offsetWidth; // restart the CSS animation
+        el.classList.add(cls);
+    }
+
+    function crossSlide(front, back, src, forward) {
+        if (!front || !back) return;
+        clearTimeout(animTimers.get(front));
+        back.src = src;
+        replayAnim(front, forward ? 'gallery-slide-out-left' : 'gallery-slide-out-right', slideOutClasses.concat(slideInClasses));
+        replayAnim(back, forward ? 'gallery-img-swap' : 'gallery-img-swap-left', slideInClasses.concat(slideOutClasses));
+        animTimers.set(front, setTimeout(() => {
+            front.src = src;
+            front.classList.remove(...slideOutClasses);
+            back.classList.remove(...slideInClasses);
+            animTimers.delete(front);
+        }, 320));
+    }
+
+    function show(i) {
+        const next = (i + total) % total;
+        const changed = next !== current;
+        // Forward slides the old image out to the left, the new one in from the right; backward is the reverse
+        const forward = (next - current + total) % total <= total / 2;
+        const src = srcs[next];
+        current = next;
+        if (changed) {
+            crossSlide(mainImg, outImg, src, forward);
+            crossSlide(lbImg, lbOut, src, forward);
+        } else {
+            // Initial sync — every layer shows the current image
+            if (mainImg) mainImg.src = src;
+            if (outImg) outImg.src = src;
+            if (lbImg) lbImg.src = src;
+            if (lbOut) lbOut.src = src;
+        }
+        if (counter) counter.textContent = (current + 1) + ' / ' + total;
+        if (lbCounter) lbCounter.textContent = (current + 1) + ' / ' + total;
+        thumbs.forEach((t, idx) => {
+            t.classList.remove(activeClass, ...idleClasses);
+            t.classList.add(...(idx === current ? [activeClass] : idleClasses));
+        });
+        if (lbThumbs) {
+            Array.from(lbThumbs.children).forEach((t, idx) => {
+                t.classList.remove(activeClass, ...lbIdleClasses);
+                t.classList.add(...(idx === current ? [activeClass] : lbIdleClasses));
+            });
+        }
+        const activeThumb = thumbs[current];
+        if (activeThumb && activeThumb.scrollIntoView) {
+            activeThumb.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+        }
+    }
+
+    function buildLightboxThumbs() {
+        if (!lbThumbs) return;
+        lbThumbs.innerHTML = '';
+        srcs.forEach((src, idx) => {
+            const btn = document.createElement('button');
+            btn.type = 'button';
+            btn.setAttribute('aria-label', 'View image ' + (idx + 1));
+            btn.className = 'flex-shrink-0 rounded-lg overflow-hidden border-2 transition-colors duration-200 ' + (idx === 0 ? activeClass : lbIdleClasses.join(' '));
+            const img = document.createElement('img');
+            img.src = src;
+            img.alt = '';
+            img.loading = 'lazy';
+            img.className = 'w-20 h-14 md:w-24 md:h-16 object-cover';
+            btn.appendChild(img);
+            btn.addEventListener('click', () => show(idx));
+            lbThumbs.appendChild(btn);
+        });
+    }
+
+    function openLightbox() {
+        if (!lightbox) return;
+        clearTimeout(closeTimer);
+        clearTimeout(animTimers.get(lbImg));
+        if (lbImg) {
+            lbImg.src = srcs[current];
+            lbImg.classList.remove(...slideInClasses, ...slideOutClasses);
+        }
+        if (lbOut) {
+            lbOut.src = srcs[current];
+            lbOut.classList.remove(...slideInClasses, ...slideOutClasses);
+        }
+        if (lbCounter) lbCounter.textContent = (current + 1) + ' / ' + total;
+        lightbox.classList.remove('hidden');
+        replayAnim(lightbox, 'lightbox-open-anim', ['lightbox-close-anim']);
+        document.body.classList.add('overflow-hidden');
+    }
+    function closeLightbox() {
+        if (!lightbox || lightbox.classList.contains('hidden')) return;
+        replayAnim(lightbox, 'lightbox-close-anim', ['lightbox-open-anim']);
+        clearTimeout(closeTimer);
+        closeTimer = setTimeout(() => {
+            lightbox.classList.add('hidden');
+            document.body.classList.remove('overflow-hidden');
+        }, 200);
+    }
+
+    // Main carousel controls
+    if (prevBtn) prevBtn.addEventListener('click', () => show(current - 1));
+    if (nextBtn) nextBtn.addEventListener('click', () => show(current + 1));
+    thumbs.forEach((t, idx) => t.addEventListener('click', () => show(idx)));
+    if (mainImg) mainImg.addEventListener('click', openLightbox);
+
+    // Lightbox controls
+    if (lbPrev) lbPrev.addEventListener('click', () => show(current - 1));
+    if (lbNext) lbNext.addEventListener('click', () => show(current + 1));
+    if (lbClose) lbClose.addEventListener('click', closeLightbox);
+    if (lightbox) lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) closeLightbox(); // backdrop click
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if (lightbox && !lightbox.classList.contains('hidden')) {
+            if (e.key === 'Escape') closeLightbox();
+            else if (e.key === 'ArrowLeft') show(current - 1);
+            else if (e.key === 'ArrowRight') show(current + 1);
+        }
+    });
+
+    buildLightboxThumbs();
+    show(0);
+}
+
+// -------------------------------------------------------------------------
+// Navbar active link — re-sync after Swup navigation / popstate
+// -------------------------------------------------------------------------
+function updateNavActive() {
+    const path = window.location.pathname.replace(/\/+$/, '');
+    let currentPage = path.substring(path.lastIndexOf('/') + 1) || 'index';
+
+    const pageBySegment = { index: 'home', socials: 'socials', listings: 'listings', contact: 'contact', about: 'about' };
+    if (pageBySegment[currentPage]) {
+        currentPage = pageBySegment[currentPage];
+    } else if (path.indexOf('/properties/details') !== -1) {
+        currentPage = 'listings';
+    } else {
+        currentPage = '';
+    }
+
+    const active = 'text-emerald-600 font-semibold';
+    const inactive = 'text-gray-600 hover:text-emerald-600';
+
+    document.querySelectorAll('[data-nav-page]').forEach((link) => {
+        if (link.dataset.navPage === currentPage) {
+            link.classList.remove(...inactive.split(' '));
+            link.classList.add(...active.split(' '));
+        } else {
+            link.classList.remove(...active.split(' '));
+            link.classList.add(...inactive.split(' '));
+        }
+    });
+}
 
 // -------------------------------------------------------------------------
 // Boot
 // -------------------------------------------------------------------------
-document.addEventListener('DOMContentLoaded', () => {
-    initializeMobileMenu();
+function initPageScripts() {
     initHeroCarousel();
     initAccordionTabs();
     initLearnMoreAnimations();
     initScrollToTop();
+    initListingsFilters();
+    initScrollReveal();
+    initPropertyGallery();
+    updateNavActive();
+}
+
+let swupInstance = null;
+
+document.addEventListener('DOMContentLoaded', () => {
+    initializeMobileMenu();          // persistent navbar — bind exactly once
+    initPageScripts();
     // lucide.createIcons() is called by qmx_foot() in includes/layout.php.
     // Do not call it here — it would fire twice on every page.
+
+    window.addEventListener('popstate', updateNavActive);
+
+    if (typeof Swup !== 'undefined' && !swupInstance) {
+        swupInstance = new Swup();
+        swupInstance.hooks.on('page:view', () => {
+            try {
+                initPageScripts();
+            } catch (err) {
+                console.error('[qmax] page scripts failed after navigation:', err);
+            }
+            if (typeof lucide !== 'undefined') lucide.createIcons();
+        });
+    }
 });
 

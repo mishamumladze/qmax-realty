@@ -215,3 +215,68 @@ html {
 .property-card.hidden { display: none; }
 .scrollbar-hide::-webkit-scrollbar { display: none; }
 .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* ─── Property gallery / lightbox animations ────────────────────────────── */
+.lightbox-open-anim {
+  animation: lb-fade-in 0.25s ease-out both;
+}
+.lightbox-close-anim {
+  animation: lb-fade-out 0.2s ease-in both;
+}
+@keyframes lb-fade-in {
+  from { opacity: 0; transform: scale(0.96); }
+  to   { opacity: 1; transform: scale(1); }
+}
+@keyframes lb-fade-out {
+  from { opacity: 1; transform: scale(1); }
+  to   { opacity: 0; transform: scale(0.97); }
+}
+
+.gallery-img-swap {
+  animation: img-slide-in-right 0.3s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.gallery-img-swap-left {
+  animation: img-slide-in-left 0.3s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+@keyframes img-slide-in-right {
+  from { opacity: 0; transform: translateX(100%); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes img-slide-in-left {
+  from { opacity: 0; transform: translateX(-100%); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+.gallery-slide-out-left {
+  animation: img-slide-out-left 0.3s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+.gallery-slide-out-right {
+  animation: img-slide-out-right 0.3s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+@keyframes img-slide-out-left {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-100%); }
+}
+@keyframes img-slide-out-right {
+  from { transform: translateX(0); }
+  to   { transform: translateX(100%); }
+}
+
+/* Swup page transition — slide-up fade (CSS var, not Sass: Tailwind v4 CLI
+   passes Sass $vars through literally, so we use a native custom property) */
+html {
+  --transition-speed: 0.3s;
+
+  &.is-changing .transition-fade {
+    transition:
+      opacity var(--transition-speed) ease-in-out,
+      transform var(--transition-speed) ease-in-out;
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  &.is-animating .transition-fade {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+}

@@ -15,12 +15,10 @@ if ($slug === '' || !isset($all_properties[$slug])) {
     $property      = null;
     $page_title    = 'Property Not Found — QMAX Realty';
     $page_desc     = 'The property you are looking for could not be found. Browse our premium real estate listings instead.';
-    $current_page  = 'listings';
 } else {
     $property      = $all_properties[$slug];
     $page_title    = ($property['title'] ?? 'Property') . ' — QMAX Realty';
     $page_desc     = $property['meta_description'] ?? ($property['short_description'] ?? '');
-    $current_page  = 'listings';
 }
 
 include __DIR__ . '/../includes/property-detail-template.php';

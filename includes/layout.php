@@ -37,7 +37,7 @@ function qmx_head(
     $base = BASE_URL; // defined once in config/app.php
 
     $gtag_id        = 'G-HFQKVSMVW1';
-    $clarity_id     = 'sli6xhot4m';
+    // $clarity_id     = 'sli6xhot4m';
     $bokun_uuid     = '9672d91a-bb8f-4062-9e06-a99a6c1325b4';
 
     $safe_title      = htmlspecialchars($title,       ENT_QUOTES, 'UTF-8');
@@ -117,9 +117,63 @@ function qmx_head(
         <!-- Compiled Tailwind CSS -->
         <link rel="stylesheet" href="<?= $base ?>scss/main.css">
 
+        <!-- Page transitions (Swup) + scroll reveal (SAL) -->
+        <style>
+            /* Swup: fade transition on the swapped container */
+
+            /* SAL scroll reveal — base transition */
+            [data-sal] {
+                transition: opacity 0.6s ease, transform 0.6s ease;
+                will-change: opacity, transform;
+            }
+            [data-sal="fade"] {
+                opacity: 0;
+            }
+            [data-sal="fade"].sal-animate {
+                opacity: 1;
+            }
+            [data-sal="slide-up"] {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            [data-sal="slide-up"].sal-animate {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            [data-sal="slide-left"] {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            [data-sal="slide-left"].sal-animate {
+                opacity: 1;
+                transform: translateX(0);
+            }
+            [data-sal="slide-right"] {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            [data-sal="slide-right"].sal-animate {
+                opacity: 1;
+                transform: translateX(0);
+            }
+
+            /* Respect users who prefer reduced motion */
+            @media (prefers-reduced-motion: reduce) {
+                html.is-changing .transition-fade,
+                html.is-animating .transition-fade,
+                [data-sal],
+                [data-sal].sal-animate {
+                    transition: none !important;
+                    opacity: 1 !important;
+                    transform: none !important;
+                }
+            }
+        </style>
+
         <!-- Lucide icons (self-hosted via npm) -->
         <script src="<?= $base ?>js/lucide.min.js" defer></script>
         <script src="<?= $base ?>js/swup.min.js" defer></script>
+        <script src="<?= $base ?>js/sal.min.js" defer></script>
 
         <!-- GTranslate language switcher -->
         <script>
@@ -147,7 +201,7 @@ function qmx_head(
         </script>
 
         <!-- Microsoft Clarity -->
-        <script>
+        <!-- <script>
             (function(c, l, a, r, i, t, y) {
                 c[a] = c[a] || function() {
                     (c[a].q = c[a].q || []).push(arguments)
@@ -157,8 +211,8 @@ function qmx_head(
                 t.src = "https://www.clarity.ms/tag/" + i;
                 y = l.getElementsByTagName(r)[0];
                 y.parentNode.insertBefore(t, y);
-            })(window, document, "clarity", "script", "<?= htmlspecialchars($clarity_id, ENT_QUOTES, 'UTF-8') ?>");
-        </script>
+            })(window, document, "clarity", "script", "<questionmark= htmlspecialchars($clarity_id, ENT_QUOTES, 'UTF-8') ?>");
+        </script> -->
 
     </head>
 

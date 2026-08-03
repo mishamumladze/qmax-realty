@@ -6,14 +6,7 @@ declare(strict_types=1);
  * Uses BASE_URL constant defined in config/app.php.
  */
 
-$current_page = $current_page ?? '';
 $base = BASE_URL;
-
-function nav_active(string $page, string $current): string {
-    return $page === $current
-        ? 'text-emerald-600 font-semibold'
-        : 'text-gray-600 hover:text-emerald-600';
-}
 ?>
 <nav id="navbar" class="fixed bottom-0 md:top-0 md:bottom-auto z-50 w-full bg-white/95 backdrop-blur-lg border-t md:border-t-0 md:border-b border-gray-200 shadow-sm">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -30,24 +23,24 @@ function nav_active(string $page, string $current): string {
             <!-- Desktop nav links -->
             <div class="hidden md:block">
                 <div class="flex items-baseline space-x-6">
-                    <a href="<?= $base ?>index"
-                       class="<?= nav_active('home', $current_page) ?> px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">
+                    <a href="<?= $base ?>index" data-nav-page="home"
+                       class="text-gray-600 hover:text-emerald-600 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">
                         Home
                     </a>
-                    <a href="<?= $base ?>socials"
-                       class="<?= nav_active('socials', $current_page) ?> px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">
+                    <a href="<?= $base ?>socials" data-nav-page="socials"
+                       class="text-gray-600 hover:text-emerald-600 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">
                         Socials
                     </a>
-                    <a href="<?= $base ?>listings"
-                       class="<?= nav_active('listings', $current_page) ?> px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">
+                    <a href="<?= $base ?>listings" data-nav-page="listings"
+                       class="text-gray-600 hover:text-emerald-600 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">
                         Listings
                     </a>
-                    <a href="<?= $base ?>contact"
-                       class="<?= nav_active('contact', $current_page) ?> px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">
+                    <a href="<?= $base ?>contact" data-nav-page="contact"
+                       class="text-gray-600 hover:text-emerald-600 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">
                         Contact
                     </a>
-                    <a href="<?= $base ?>about"
-                       class="<?= nav_active('about', $current_page) ?> px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">
+                    <a href="<?= $base ?>about" data-nav-page="about"
+                       class="text-gray-600 hover:text-emerald-600 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">
                         About
                     </a>
                 </div>
@@ -87,8 +80,8 @@ function nav_active(string $page, string $current): string {
             ];
             ?>
             <?php foreach ($mobileLinks as $ml): ?>
-                <a href="<?= $base . $ml['href'] ?>"
-                   class="flex items-center justify-between px-4 py-3 rounded-xl text-base font-medium transition-all duration-200 <?= nav_active($ml['page'], $current_page) ?> hover:bg-emerald-50">
+                <a href="<?= $base . $ml['href'] ?>" data-nav-page="<?= $ml['page'] ?>"
+                   class="flex items-center justify-between px-4 py-3 rounded-xl text-base font-medium transition-all duration-200 text-gray-600 hover:text-emerald-600 hover:bg-emerald-50">
                     <span><?= $ml['label'] ?></span>
                     <i data-lucide="<?= $ml['icon'] ?>" class="w-5 h-5 text-emerald-600"></i>
                 </a>
