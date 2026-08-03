@@ -48,7 +48,7 @@ $base = BASE_URL;
 
             <!-- Right: language switcher + hamburger -->
             <div class="flex-1 flex items-center justify-end gap-3">
-                <div class="lang-switcher translate_wrapper"></div>
+                <div class="gtranslate_wrapper"></div>
                 <div class="flex md:hidden">
                     <button id="mobile-menu-toggle" type="button"
                             class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-gray-600 hover:text-emerald-600 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 transition-all duration-200"

@@ -491,12 +491,12 @@ qmx_head($page_title, $page_desc, 'bg-white text-gray-800');
                     <p class="text-sm text-gray-600 mb-4">Enquire about this listing — we'll get back to you shortly.</p>
 
                     <div class="space-y-2 text-sm">
-                        <a href="https://wa.me/<?= CONTACT_PHONE_ENG ?>?text=Hi!%20I'm%20interested%20in%20the%20<?= rawurlencode($title) ?>%20property."
+                        <a href="https://wa.me/<?= CONTACT_PHONE ?>?text=Hi!%20I'm%20interested%20in%20the%20<?= rawurlencode($title) ?>%20property."
                            target="_blank" rel="noopener noreferrer"
                            class="flex items-center justify-center gap-2 bg-green-500 hover:bg-green-600 text-white w-full px-4 py-3 rounded-xl font-semibold transition-colors duration-200">
-                            <img src="<?= BASE_URL ?>img/Logos/whatsapp.png" alt="" class="w-5 h-5"> WhatsApp
+                            <img src="<?= BASE_URL ?>img/Logos/si-whatsapp-w.svg" alt="" class="w-5 h-5"> WhatsApp
                         </a>
-                        <a href="tel:<?= CONTACT_PHONE_ENG ?>"
+                        <a href="tel:<?= CONTACT_PHONE ?>"
                            class="flex items-center gap-2 border border-emerald-600 text-emerald-700 hover:bg-emerald-50 justify-center px-4 py-3 rounded-xl font-semibold transition-colors duration-200 w-full">
                             <i data-lucide="phone" class="w-4 h-4" aria-hidden="true"></i> Call Us
                         </a>

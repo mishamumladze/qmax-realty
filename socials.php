@@ -16,8 +16,8 @@
             'tagline'     => 'Daily updates',
             'description' => 'Follow QMAX Realty for property photos, new listings, and standout homes across Georgia.',
             'cta_text'    => 'Follow Us',
-            'cta_url'     => 'https://www.instagram.com/qmax_realty',
-            'logo'        => 'img/Logos/instagram.png',
+            'cta_url'     => SOCIAL_INSTAGRAM,
+            'logo'        => 'img/Logos/si-instagram-w.svg',
             'gradient'    => 'from-purple-500 to-pink-500',
         ],
         [
@@ -26,19 +26,9 @@
             'tagline'     => 'Community updates',
             'description' => 'Join our community for market insights, local tips, and exclusive property announcements.',
             'cta_text'    => 'Like Page',
-            'cta_url'     => 'https://www.facebook.com/QMAXRealty',
-            'logo'        => 'img/Logos/facebook.png',
+            'cta_url'     => SOCIAL_FACEBOOK,
+            'logo'        => 'img/Logos/si-facebook-w.svg',
             'gradient'    => 'from-blue-600 to-blue-700',
-        ],
-        [
-            'name'        => 'YouTube',
-            'handle'      => 'QMAX Realty',
-            'tagline'     => 'Weekly videos',
-            'description' => 'Watch virtual property tours, neighborhood guides, and immersive walkthroughs across Georgia.',
-            'cta_text'    => 'Subscribe',
-            'cta_url'     => 'https://www.youtube.com/@QMAXRealty',
-            'logo'        => 'img/Logos/youtube.png',
-            'gradient'    => 'from-red-600 to-red-700',
         ],
         [
             'name'        => 'TikTok',
@@ -46,8 +36,8 @@
             'tagline'     => 'Short property clips',
             'description' => 'Quick, engaging property clips and behind-the-scenes moments from our listing team.',
             'cta_text'    => 'Follow',
-            'cta_url'     => 'https://www.tiktok.com/@qmax_realty',
-            'logo'        => 'img/Logos/tiktok.png',
+            'cta_url'     => SOCIAL_TIKTOK,
+            'logo'        => 'img/Logos/si-tiktok-w.svg',
             'gradient'    => 'from-black to-gray-800',
         ],
         [
@@ -56,49 +46,19 @@
             'tagline'     => 'Instant updates',
             'description' => 'Get instant notifications about new property listings, price changes, and market news.',
             'cta_text'    => 'Join Channel',
-            'cta_url'     => 'https://t.me/QMAX_Realty',
-            'logo'        => 'img/Logos/telegram.png',
+            'cta_url'     => SOCIAL_TELEGRAM,
+            'logo'        => 'img/Logos/si-telegram-w.svg',
             'gradient'    => 'from-blue-400 to-blue-500',
         ],
         [
-            'name'        => 'WhatsApp English',
-            'handle'      => CONTACT_PHONE_ENG,
+            'name'        => 'WhatsApp',
+            'handle'      => CONTACT_PHONE,
             'tagline'     => '24/7 support',
             'description' => 'Direct communication for property inquiries, viewing requests, and buying or renting support.',
             'cta_text'    => 'Message Us',
-            'cta_url'     => CONTACT_WA_ENG,
-            'logo'        => 'img/Logos/whatsapp.png',
+            'cta_url'     => CONTACT_WA,
+            'logo'        => 'img/Logos/si-whatsapp-w.svg',
             'gradient'    => 'from-green-500 to-green-600',
-        ],
-        [
-            'name'        => 'WhatsApp Russian',
-            'handle'      => CONTACT_PHONE_RUS,
-            'tagline'     => '24/7 support',
-            'description' => 'Direct communication for property inquiries, viewing requests, and buying or renting support.',
-            'cta_text'    => 'Message Us',
-            'cta_url'     => CONTACT_WA_RUS,
-            'logo'        => 'img/Logos/whatsapp.png',
-            'gradient'    => 'from-green-500 to-green-600',
-        ],
-        [
-            'name'        => 'Viber',
-            'handle'      => CONTACT_PHONE_RUS,
-            'tagline'     => 'Voice & text',
-            'description' => 'Connect with us on Viber for voice messages, photos, and property viewing arrangements.',
-            'cta_text'    => 'Add Contact',
-            'cta_url'     => 'viber://chat?number=' . CONTACT_PHONE_RUS,
-            'logo'        => 'img/Logos/viber.png',
-            'gradient'    => 'from-purple-600 to-purple-700',
-        ],
-        [
-            'name'        => 'WeChat',
-            'handle'      => 'qmax_realty',
-            'tagline'     => 'For Chinese clients',
-            'description' => 'Connect with Chinese-speaking clients and get property information in Chinese.',
-            'cta_text'    => 'Add Friend',
-            'cta_url'     => 'https://u.wechat.com/kLtdU5DQTmL7hstMACwZ0jM?s=2',
-            'logo'        => 'img/Logos/wechat.png',
-            'gradient'    => 'from-green-600 to-green-700',
         ],
     ];
 
@@ -181,8 +141,7 @@
                 </div>
                 <h3 class="text-lg font-semibold text-gray-800 mb-2">Phone</h3>
                 <p class="text-gray-600">
-                    <a href="tel:<?= CONTACT_PHONE_ENG ?>" class="hover:text-emerald-600"><?= CONTACT_PHONE_ENG ?> (ENG)</a><br>
-                    <a href="tel:<?= CONTACT_PHONE_RUS ?>" class="hover:text-emerald-600"><?= CONTACT_PHONE_RUS ?> (RUS)</a>
+                    <a href="tel:<?= CONTACT_PHONE ?>" class="hover:text-emerald-600"><?= CONTACT_PHONE ?></a><br>
                 </p>
             </div>
             <!-- <div class="text-center">

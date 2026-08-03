@@ -57,9 +57,17 @@ if (!defined('SITE_URL')) {
 // Update here and every page/email reflects the change automatically.
 if (!defined('CONTACT_EMAIL')) {
     define('CONTACT_EMAIL',     'qmax.rea@gmail.com');
-    define('CONTACT_PHONE_ENG', '+995595505402');
-    define('CONTACT_PHONE_RUS', '+995595906560');
-    define('CONTACT_WA_ENG',    'https://wa.me/995595505402');
-    define('CONTACT_WA_RUS',    'https://wa.me/995595906560');
+    define('CONTACT_PHONE',     '+905365597376');
+    define('CONTACT_WA',        'https://wa.me/905365597376');
+    define('CONTACT_TLG',       'https://t.me/QMAXreal');
     define('CONTACT_ADDRESS',   '2/11 Gia Abesadze St, Tbilisi, Georgia');
+}
+
+// ── Social media links — single source of truth ─────────────────────────────
+// Update here and every page/footer reflects the change automatically.
+if (!defined('SOCIAL_INSTAGRAM')) {
+    define('SOCIAL_INSTAGRAM', 'https://www.instagram.com/qmax_realestate');
+    define('SOCIAL_FACEBOOK',  'https://www.facebook.com/qmax.rea');
+    define('SOCIAL_TIKTOK',    'https://www.tiktok.com/@qmax_realty');
+    define('SOCIAL_TELEGRAM',  'https://t.me/QMAXreal');
 }

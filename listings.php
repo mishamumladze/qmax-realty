@@ -348,10 +348,10 @@
                                class="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white text-center px-4 py-2.5 rounded-lg font-semibold text-sm transition-colors duration-200">
                                 View Details
                             </a>
-                            <a href="https://wa.me/<?= CONTACT_PHONE_ENG ?>?text=Hi!%20I'm%20interested%20in%20<?= rawurlencode($title) ?>%20listed%20at%20$<?= $price ?>"
+                            <a href="https://wa.me/<?= CONTACT_PHONE ?>?text=Hi!%20I'm%20interested%20in%20<?= rawurlencode($title) ?>%20listed%20at%20$<?= $price ?>"
                                target="_blank" rel="noopener noreferrer"
                                class="flex items-center justify-center gap-1.5 bg-green-500 hover:bg-green-600 text-white px-4 py-2.5 rounded-lg font-semibold text-sm transition-colors duration-200">
-                                <img src="<?= BASE_URL ?>img/Logos/whatsapp.png" alt="" class="w-4 h-4" aria-hidden="true">
+                                <img src="<?= BASE_URL ?>img/Logos/si-whatsapp-w.svg" alt="" class="w-4 h-4" aria-hidden="true">
                                 Enquire
                             </a>
                         </div>
@@ -406,10 +406,10 @@
             <p class="text-gray-600 mb-6 max-w-md mx-auto">
                 Tell us what you're looking for and we'll find the perfect property for you.
             </p>
-            <a href="https://wa.me/<?= CONTACT_PHONE_ENG ?>?text=Hi!%20I'm%20looking%20for%20a%20property%20in%20Georgia."
+            <a href="https://wa.me/<?= CONTACT_PHONE ?>?text=Hi!%20I'm%20looking%20for%20a%20property%20in%20Georgia."
                target="_blank" rel="noopener noreferrer"
                class="inline-flex items-center bg-green-500 hover:bg-green-600 text-white px-8 py-3 rounded-xl font-semibold transition-colors duration-200">
-                <img src="<?= BASE_URL ?>img/Logos/whatsapp.png" alt="" class="w-5 h-5 mr-2" aria-hidden="true">
+                <img src="<?= BASE_URL ?>img/Logos/si-whatsapp-w.svg" alt="" class="w-5 h-5 mr-2" aria-hidden="true">
                 Ask Us on WhatsApp
             </a>
         </div>

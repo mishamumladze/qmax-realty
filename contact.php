@@ -150,11 +150,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     </div>
                     <div>
                         <p class="text-sm text-gray-500">Call us</p>
-                        <a href="tel:<?= CONTACT_PHONE_ENG ?>" class="text-emerald-600 hover:text-emerald-700 font-medium block">
-                            <?= CONTACT_PHONE_ENG ?>
-                        </a>
-                        <a href="tel:<?= CONTACT_PHONE_RUS ?>" class="text-emerald-600 hover:text-emerald-700 font-medium text-sm">
-                            <?= CONTACT_PHONE_RUS ?>
+                        <a href="tel:<?= CONTACT_PHONE ?>" class="text-emerald-600 hover:text-emerald-700 font-medium block">
+                            <?= CONTACT_PHONE ?>
                         </a>
                     </div>
                 </div>
@@ -174,34 +171,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
             </div>
 
-            <div class="bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow p-6 border border-gray-100">
+            <!-- <div class="bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow p-6 border border-gray-100">
                 <div class="flex items-center gap-4">
                     <div class="w-12 h-12 bg-emerald-50 rounded-xl flex items-center justify-center flex-shrink-0">
                         <i data-lucide="map-pin" class="w-5 h-5 text-emerald-600"></i>
                     </div>
                     <div>
                         <p class="text-sm text-gray-500">Visit us</p>
-                        <p class="text-gray-700 font-medium"><?= CONTACT_ADDRESS ?></p>
+                        <p class="text-gray-700 font-medium"><questionmark= CONTACT_ADDRESS ?></p>
                     </div>
                 </div>
-            </div>
+            </div> -->
 
             <div class="bg-green-50 rounded-2xl p-6 border border-green-100">
                 <div class="flex items-center gap-3 mb-3">
-                    <img src="<?= BASE_URL ?>img/Logos/whatsapp.png" alt="WhatsApp" class="w-8 h-8">
+                    <img src="<?= BASE_URL ?>img/Logos/si-whatsapp.svg" alt="WhatsApp" class="w-8 h-8">
                     <div>
                         <p class="font-semibold text-gray-800">Chat on WhatsApp</p>
                         <p class="text-sm text-gray-600">Fast response</p>
                     </div>
                 </div>
                 <div class="flex gap-2">
-                    <a href="<?= CONTACT_WA_ENG ?>" target="_blank" rel="noopener noreferrer"
+                    <a href="<?= CONTACT_WA ?>" target="_blank" rel="noopener noreferrer"
                        class="flex-1 bg-green-600 hover:bg-green-700 text-white text-center px-4 py-2.5 rounded-lg font-semibold text-sm transition-colors">
-                        English
-                    </a>
-                    <a href="<?= CONTACT_WA_RUS ?>" target="_blank" rel="noopener noreferrer"
-                       class="flex-1 bg-green-600 hover:bg-green-700 text-white text-center px-4 py-2.5 rounded-lg font-semibold text-sm transition-colors">
-                        Russian
+                        WhatsApp
                     </a>
                 </div>
             </div>

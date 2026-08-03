@@ -267,10 +267,10 @@
         <h2 class="text-2xl md:text-3xl font-bold mb-4">Ready to Find Your Dream Property?</h2>
         <p class="text-lg text-white/90 mb-6 max-w-xl mx-auto">Contact us now to schedule a viewing or get expert advice. We respond within the hour.</p>
         <div class="flex flex-col sm:flex-row justify-center gap-4">
-            <a href="https://wa.me/<?= CONTACT_PHONE_ENG ?>?text=Hello!%20I'd%20like%20to%20inquire%20about%20properties."
+            <a href="https://wa.me/<?= CONTACT_PHONE ?>?text=Hello!%20I'd%20like%20to%20inquire%20about%20properties."
                target="_blank" rel="noopener noreferrer"
                class="flex items-center justify-center bg-white text-emerald-700 hover:bg-emerald-50 px-6 py-3 rounded-lg font-semibold transition-colors duration-200">
-                <img src="img/Logos/whatsapp.png" alt="" class="w-5 h-5 mr-2" aria-hidden="true">
+                <img src="img/Logos/si-whatsapp.svg" alt="" class="w-5 h-5 mr-2" aria-hidden="true">
                 WhatsApp English
             </a>
             <a href="<?= BASE_URL ?>listings"

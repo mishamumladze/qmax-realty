@@ -134,10 +134,8 @@ function qmx_inquiry_confirmation_html(array $b): string
     $lang     = htmlspecialchars($b['language'] ?? 'English',   ENT_QUOTES, 'UTF-8');
     $notes    = htmlspecialchars($b['notes'] ?? '',              ENT_QUOTES, 'UTF-8');
     $c_email  = htmlspecialchars(CONTACT_EMAIL,                  ENT_QUOTES, 'UTF-8');
-    $c_wa_eng = htmlspecialchars(CONTACT_WA_ENG,                 ENT_QUOTES, 'UTF-8');
-    $c_wa_rus = htmlspecialchars(CONTACT_WA_RUS,                 ENT_QUOTES, 'UTF-8');
-    $c_ph_eng = htmlspecialchars(CONTACT_PHONE_ENG,              ENT_QUOTES, 'UTF-8');
-    $c_ph_rus = htmlspecialchars(CONTACT_PHONE_RUS,              ENT_QUOTES, 'UTF-8');
+    $c_wa = htmlspecialchars(CONTACT_WA,                 ENT_QUOTES, 'UTF-8');
+    $c_ph = htmlspecialchars(CONTACT_PHONE,              ENT_QUOTES, 'UTF-8');
 
     // Viewing date row (only shown when a date was provided)
     $date_row = '';
@@ -252,15 +250,9 @@ function qmx_inquiry_confirmation_html(array $b): string
                 </td>
               </tr>
               <tr><td style="padding-top:6px;">
-                <a href="{$c_wa_eng}"
+                <a href="{$c_wa}"
                    style="font-size:13px;color:#047857;text-decoration:none;">
-                  💬 WhatsApp (ENG): {$c_ph_eng}
-                </a>
-              </td></tr>
-              <tr><td style="padding-top:4px;">
-                <a href="{$c_wa_rus}"
-                   style="font-size:13px;color:#047857;text-decoration:none;">
-                  💬 WhatsApp (RUS): {$c_ph_rus}
+                  💬 WhatsApp: {$c_ph}
                 </a>
               </td></tr>
             </table>
@@ -293,8 +285,7 @@ function qmx_inquiry_confirmation_text(array $b): string
     $prop      = $b['property_title'];
     $lang      = $b['language'] ?? 'English';
     $c_email   = CONTACT_EMAIL;
-    $c_ph_eng  = CONTACT_PHONE_ENG;
-    $c_ph_rus  = CONTACT_PHONE_RUS;
+    $c_ph  = CONTACT_PHONE;
 
     $date_line = !empty($b['viewing_date'])
         ? 'Preferred Date: ' . date('l, F j, Y', strtotime($b['viewing_date']))
@@ -322,8 +313,7 @@ Request Type: {$type}
 
 ── Contact Us ───────────────────────────────
 Email:           {$c_email}
-WhatsApp (ENG):  {$c_ph_eng}
-WhatsApp (RUS):  {$c_ph_rus}
+WhatsApp:  {$c_ph}
 
 QMAX Realty
 TEXT;

@@ -14,25 +14,20 @@
             <!-- Contact Info -->
             <div class="contact-info mb-8 md:mb-0">
                 <p class="font-bold text-lg mb-4">Contact Us</p>
-                <p class="mb-2"><a href="<?= CONTACT_WA_ENG ?>" class="flex hover:text-emerald-600 transition-colors"><img src="<?= BASE_URL ?>img/Logos/whatsapp.png" class="w-6 h-6"> <?= CONTACT_PHONE_ENG ?> (ENG)</a></p>
-                <p class="mb-2"><a href="<?= CONTACT_WA_RUS ?>" class="flex hover:text-emerald-600 transition-colors"><img src="<?= BASE_URL ?>img/Logos/whatsapp.png" class="w-6 h-6"> <?= CONTACT_PHONE_RUS ?> (RUS)</a></p>
-                <p class="mb-2"><a href="" class="flex hover:text-emerald-600 transition-colors">📍 <?= CONTACT_ADDRESS ?></a></p>
+                <p class="mb-2"><a href="<?= CONTACT_WA ?>" class="flex hover:text-emerald-600 transition-colors"><img src="<?= BASE_URL ?>img/Logos/si-whatsapp.svg" class="w-6 h-6"> <?= CONTACT_PHONE ?></a></p>
+                <!-- <p class="mb-2"><a href="" class="flex hover:text-emerald-600 transition-colors">📍 <questionmark= CONTACT_ADDRESS ?></a></p> -->
                 <p class="mb-2"><a href="mailto:<?= CONTACT_EMAIL ?>" class="flex hover:text-emerald-600 transition-colors">✉ <?= CONTACT_EMAIL ?></a></p>
             </div>
 
             <!-- Social Links -->
             <div class="social-links flex md:justify-end justify-center space-x-4 items-center">
-                <a href="<?= CONTACT_WA_RUS ?>" target="_blank" rel="noopener noreferrer"
+                <a href="<?= CONTACT_WA ?>" target="_blank" rel="noopener noreferrer"
                    title="WhatsApp" aria-label="Message us on WhatsApp">
-                    <img src="<?= BASE_URL ?>img/Logos/whatsapp.png" alt="WhatsApp" class="w-10 h-10 hover:opacity-80 transition-opacity duration-200">
+                    <img src="<?= BASE_URL ?>img/Logos/si-whatsapp.svg" alt="WhatsApp" class="w-10 h-10 hover:opacity-80 transition-opacity duration-200">
                 </a>
-                <a href="https://t.me/giorgi_gugunishvili" target="_blank" rel="noopener noreferrer"
+                <a href="<?= SOCIAL_TELEGRAM ?>" target="_blank" rel="noopener noreferrer"
                    title="Telegram" aria-label="Message us on Telegram">
-                    <img src="<?= BASE_URL ?>img/Logos/telegram.png" alt="Telegram" class="w-10 h-10 hover:opacity-80 transition-opacity duration-200">
-                </a>
-                <a href="viber://chat?number=<?= CONTACT_PHONE_RUS ?>" target="_blank" rel="noopener noreferrer"
-                   title="Viber" aria-label="Message us on Viber">
-                    <img src="<?= BASE_URL ?>img/Logos/viber.png" alt="Viber" class="w-10 h-10 hover:opacity-80 transition-opacity duration-200">
+                    <img src="<?= BASE_URL ?>img/Logos/si-telegram.svg" alt="Telegram" class="w-10 h-10 hover:opacity-80 transition-opacity duration-200">
                 </a>
             </div>
         </div>

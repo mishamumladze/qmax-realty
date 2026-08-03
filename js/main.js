@@ -82,6 +82,15 @@ function initializeMobileMenu() {
     });
 }
 
+// GTranslate settings
+window.gtranslateSettings = {
+  default_language: "en",
+  native_language_names: true,
+  detect_browser_language: true,
+  languages: ["en", "ru", "de", "tr"],
+  wrapper_selector: ".gtranslate_wrapper",
+};
+
 // -------------------------------------------------------------------------
 // Homepage Hero Carousel
 // No-op guard: the homepage hero is currently a static image.

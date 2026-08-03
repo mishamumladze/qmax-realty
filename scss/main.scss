@@ -11,38 +11,17 @@ html {
 }
 
 /* ─── Language switcher ─────────────────────────────────────────────────── */
-.lang-switcher {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-
-  a {
-    display: block;
-    line-height: 0;  /* removes phantom gap below inline img */
-
-    img {
-      width: 36px;
-      height: 36px;
-      object-fit: cover;
-      object-position: center;
-      border-radius: 50%;        /* slight rounding — looks cleaner than circle */
-      border: 1.5px solid transparent !important;
-      opacity: 0.75;
-      transition: opacity 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
-
-      &:hover {
-        opacity: 1;
-        border-color: #059669 !important;  /* emerald-600 — matches site accent */
-        transform: scale(1.15);
-      }
-    }
-
-    /* Active / selected language flag — full opacity, emerald-900 border */
-    &.gtranslate_active img,
-    &[aria-current] img {
-      opacity: 1;
-      border-color: #064e3b !important;
-    }
+.gtranslate_wrapper {
+  // width: 100%;
+  select {
+    padding: 6px 10px !important;
+    border-radius: 0.375rem !important;
+    border: 1px solid #e5e7eb !important;
+    font-size: 13px !important;
+  }
+  width: auto;
+  option[value=""] {
+    display: none !important;
   }
 }
 

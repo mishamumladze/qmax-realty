@@ -176,17 +176,7 @@ function qmx_head(
         <script src="<?= $base ?>js/sal.min.js" defer></script>
 
         <!-- GTranslate language switcher -->
-        <script>
-            window.gtranslateSettings = {
-                default_language: "en",
-                native_language_names: true,
-                detect_browser_language: true,
-                languages: ["en", "ru"],
-                wrapper_selector: ".translate_wrapper",
-                flag_size: 48,
-            };
-        </script>
-        <script src="https://cdn.gtranslate.net/widgets/latest/flags.js" defer></script>
+        <script src="https://cdn.gtranslate.net/widgets/latest/dropdown.js" defer></script>
 
         <!-- Google Analytics -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=<?= htmlspecialchars($gtag_id, ENT_QUOTES, 'UTF-8') ?>"></script>
